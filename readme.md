@@ -23,7 +23,7 @@ SMVG propone un núcleo mínimo para estructurar esa representación sin introdu
 
 ## Estado del Proyecto
 
-🟢 v1.0.0 – Core funcional mínimo  
+🟢 v1.1.0 – Core funcional mínimo con persistencia de datos
 ⚠️ Experimental – No recomendado para uso en producción
 
 ## Evolución del Sistema
@@ -31,6 +31,7 @@ SMVG propone un núcleo mínimo para estructurar esa representación sin introdu
 ```mermaid
 graph TD
     A[v1.0.0 - Registro en memoria]
+    B[v1.1.0 - Persistencia de datos]
 ```
 
 ### Características
@@ -52,7 +53,6 @@ graph TD
 
 ## Próxima Iteración
 
-- Persistencia de datos
 - Encapsulamiento del core
 - Parametrización de unidad temporal
 

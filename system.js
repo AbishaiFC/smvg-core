@@ -4,8 +4,15 @@
  * @author AbishaiFC
  * @version 1.0.0
  */
+import fs from "fs";
+
+const filename = "executions.json";
 
 let executions = [];
+
+if (fs.existsSync(filename)) {
+  executions = JSON.parse(fs.readFileSync(filename, "utf-8"));
+}
 
 function registerExecution(description) {
   /**
@@ -21,6 +28,7 @@ function registerExecution(description) {
   };
 
   executions.push(execution);
+  fs.writeFileSync(filename, JSON.stringify(executions, null, 2));
 }
 
 function accumulate() {
