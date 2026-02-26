@@ -5,8 +5,13 @@
  * @version 1.2.0
  */
 import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
 
-const filename = "../executions.json";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const filename = path.join(__dirname, "../executions.json");
 
 export class SystemCore {
   /**
