@@ -3,8 +3,10 @@
  * CLI para el sistema de modelado de vida gamificado
  */
 import { SystemCore } from "../src/systemCore.js";
+import { FileStorage } from "../storage/fileStorage.js";
 
-const core = new SystemCore();
+const storage = new FileStorage("executions.json");
+const core = new SystemCore(storage);
 
 const command = process.argv[2];
 const argument = process.argv.slice(3).join(" ");

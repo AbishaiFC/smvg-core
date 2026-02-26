@@ -4,27 +4,15 @@
  * @author AbishaiFC
  * @version 1.2.0
  */
-import fs from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const filename = path.join(__dirname, "../executions.json");
-
 export class SystemCore {
   /**
    * Constructor de la clase SystemCore
    *
    * Encapsula la lógica de registro, acumulación y métricas.
    */
-  constructor() {
-    this.executions = [];
-
-    if (fs.existsSync(filename)) {
-      this.executions = JSON.parse(fs.readFileSync(filename, "utf-8"));
-    }
+  constructor(storage) {
+    this.storage = storage;
+    this.executions = this.storage.load();
   }
 
   registerExecution(description) {
@@ -41,7 +29,7 @@ export class SystemCore {
     };
 
     this.executions.push(execution);
-    fs.writeFileSync(filename, JSON.stringify(this.executions, null, 2));
+    this.storage.save(this.executions);
   }
 
   accumulate() {
