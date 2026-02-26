@@ -23,7 +23,7 @@ SMVG propone un núcleo mínimo para estructurar esa representación sin introdu
 
 ## Estado del Proyecto
 
-🟢 v1.2.0 – Core encapsulado + CLI
+🟢 v1.2.1 – Core encapsulado + CLI + Storage desacoplado
 ⚠️ Experimental – Arquitectura en evolución
 
 ## Evolución del Sistema
@@ -32,7 +32,7 @@ SMVG propone un núcleo mínimo para estructurar esa representación sin introdu
 graph TD
     A[v1.0.0 - Registro en memoria] --> B
     B[v1.1.0 - Persistencia de datos] --> C
-    C[v1.2.0 - Core encapsulado + CLI]
+    C[v1.2.0 - Core encapsulado + CLI + Storage desacoplado]
 ```
 
 ### Características
@@ -51,9 +51,10 @@ graph TD
 
 ## Arquitectura Interna (v1.2.0)
 
-SMVG se divide en dos capas:
+SMVG se divide en tres capas:
 
 - **Core** → Lógica de registro, acumulación y métricas
+- **Storage** → Persistencia de datos
 - **CLI** → Interfaz de interacción por consola
 
 Esto permite desacoplar la lógica del sistema de su forma de uso.
@@ -63,7 +64,7 @@ Esto permite desacoplar la lógica del sistema de su forma de uso.
 ```text
 [CLI Input]
       ↓
-[System Core]
+[System Core] <--> [Storage]
   ├── registerExecution()
   ├── accumulate()
   └── frequencyMetric()
@@ -99,5 +100,5 @@ cd smvg-core
 Ejecutar:
 
 ```bash
-node cli.js
+smvg
 ```
