@@ -1,6 +1,6 @@
 # SMVG - System Core
 
-![GitHub Tag](https://img.shields.io/github/v/tag/AbishaiFC/smvg-core?include_prereleases&style=for-the-badge&label=version&color=green)
+![GitHub Tag](https://img.shields.io/github/v/tag/AbishaiFC/smvg-core?style=for-the-badge&label=version&color=green)
 
 ## ¿Qué es SMVG?
 
@@ -23,15 +23,16 @@ SMVG propone un núcleo mínimo para estructurar esa representación sin introdu
 
 ## Estado del Proyecto
 
-🟢 v1.1.0 – Core funcional mínimo con persistencia de datos
-⚠️ Experimental – No recomendado para uso en producción
+🟢 v1.2.0 – Core encapsulado + CLI
+⚠️ Experimental – Arquitectura en evolución
 
 ## Evolución del Sistema
 
 ```mermaid
 graph TD
-    A[v1.0.0 - Registro en memoria]
-    B[v1.1.0 - Persistencia de datos]
+    A[v1.0.0 - Registro en memoria] --> B
+    B[v1.1.0 - Persistencia de datos] --> C
+    C[v1.2.0 - Core encapsulado + CLI]
 ```
 
 ### Características
@@ -41,10 +42,33 @@ graph TD
 - Acumulación en memoria
 - Metrica de frecuencia diaria
 
+## Principios de Diseño
+
+- Determinismo sobre gamificación superficial
+- Persistencia antes que visualización
+- Arquitectura evolutiva incremental
+- Separación clara entre lógica e interfaz
+
+## Arquitectura Interna (v1.2.0)
+
+SMVG se divide en dos capas:
+
+- **Core** → Lógica de registro, acumulación y métricas
+- **CLI** → Interfaz de interacción por consola
+
+Esto permite desacoplar la lógica del sistema de su forma de uso.
+
 ## Arquitectura
 
 ```text
-[Input] → [Registro] → [Acumulación] → [Métrica] → [Visualización]
+[CLI Input]
+      ↓
+[System Core]
+  ├── registerExecution()
+  ├── accumulate()
+  └── frequencyMetric()
+      ↓
+[Output]
 ```
 
 ## Métrica implementada
@@ -70,8 +94,10 @@ git clone https://github.com/AbishaiFC/smvg-core.git
 cd smvg-core
 ```
 
-2. Correr el archivo system.js
+## Uso (CLI)
+
+Ejecutar:
 
 ```bash
-node system.js
+node cli.js
 ```
